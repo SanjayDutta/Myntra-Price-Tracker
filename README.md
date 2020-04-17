@@ -10,7 +10,7 @@ Myntra is an Indian fashion e-commerce company headquartered in Bengaluru, Karna
 2. Users also need to create an account on https://www.twilio.com/ (still in works, may ignore this step)
 3. Note down the requred parameters which will be asked when the python application starts.
 4. Makes sure you have Python3 and C++ setup on your system(If not go to "http://www.mingw.org/" and "https://www.python.org/downloads/")
-5. Run run.exe to install the dependencies
+5. Compile libraries.cpp and run it, to install the dependencies
 6. Run main.py to start application
 ```
 
