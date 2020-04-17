@@ -4,12 +4,12 @@ import json
 class sendSMS:
 
 
-    def __init__(self):
+    def __init__(self,email,phoneNo,api_key,api_sec):
         self.URL = 'https://www.sms4india.com/api/v1/sendCampaign'
-        self.api_key = "EVNM3A8JC3AK6WVM6N8C9MOPQ796LP6P"
-        self.api_sec = "127HQSKNNQXE9QYV"
-        self.phoneNo = "9831898777"
-        self.senderId = "sanjay02081998@gmail.com"
+        self.api_key = api_key
+        self.api_sec = api_sec
+        self.phoneNo = phoneNo
+        self.senderId = email
         self.useType = "stage"
 
     def sendPostRequest(self,textMessage):

@@ -75,12 +75,14 @@ def main():
                         MainBoxClass.ifFailure(self)
 
         class MainTrackClass(Thread):
-            def __init__(self,email,tphone,tapi,tsec,phone):
+            def __init__(self,email,tphone,tapi,tsec,phone,wapi,wsecret):
                 self.email = email
                 self.tphone = tphone
                 self.tapi = tapi
                 self.tsec = tsec
                 self.phone = phone
+                self.wapi = wapi
+                self.wsecret = wsecret
                 Thread.__init__(self)
                 thread2=Thread(target=self.sequencer())
                 thread2.start()
@@ -124,8 +126,10 @@ def main():
                                 message = message + "Old Price: " + str(productPrice) + "\n"
                                 message = message + "*New Price: " + NewProductPrice + "*"
                                 self.writeDown(i,int(NewProductPrice))
-                                obj = sendWhatsAppsms(message,self.tapi,self.tsec,self.tphone,self.phone)  #whatsApp notification
-                                obj2 = sendSMS().sendPostRequest(message) #SMS notification
+                                #obj = sendWhatsAppsms(message,self.tapi,self.tsec,self.tphone,self.phone)  #whatsApp notification
+                                print(self.phone+"\n"+self.email+"\n"+self.wapi+"\n"+self.wsecret)
+                                obj2 = sendSMS(self.email,self.phone,self.wapi,self.wsecret)
+                                obj2.sendPostRequest(message) #SMS notification
                                 obj3 = PCN("Myntra Price Detector",message)
 
                             elif int(NewProductPrice) > productPrice:
@@ -167,11 +171,11 @@ def main():
 
         initialBox = initialDetailsBox()
         initialBox.takeInfo()
-        email, tphone, tapi, tsec, phone = initialBox.getInfo()
+        email, tphone, tapi, tsec, phone, wapi,wpsecret = initialBox.getInfo()
 
 
         objectBox = MainBoxClass()
-        objectTrack = MainTrackClass(email, tphone, tapi, tsec, phone)
+        objectTrack = MainTrackClass(email, tphone, tapi, tsec, phone,wapi,wpsecret)
 
         objectBox.start()
         objectTrack.start()
